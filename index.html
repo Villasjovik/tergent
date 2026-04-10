@@ -100,7 +100,9 @@
     #curtain-center { position:fixed;inset:0;z-index:8001;display:flex;align-items:center;justify-content:center;pointer-events:none;flex-direction:column;gap:24px;transition:opacity .28s 0s ease; }
     #curtain-center img { height:clamp(52px,8vw,88px);object-fit:contain;filter:brightness(0) invert(1); }
     #curtain-center .cx { font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(36px,5vw,64px);color:var(--gold);line-height:1;opacity:0;animation:curtainX .6s .25s var(--ease) forwards; }
-    #curtain-center .cv { height:clamp(22px,3.5vw,38px);filter:brightness(0) invert(1) opacity(.9);opacity:0;animation:curtainX .6s .45s var(--ease) forwards; }
+    #curtain-center .cv { opacity:0;animation:curtainX .6s .45s var(--ease) forwards; }
+    #curtain-center .cv.cv-pill { background:rgba(255,255,255,.90);border-radius:10px;padding:10px 18px;display:flex;align-items:center;justify-content:center;height:clamp(40px,5.5vw,72px); }
+    #curtain-center .cv.cv-pill img { max-height:100%;max-width:clamp(80px,10vw,145px);object-fit:contain; }
     #curtain-center .cv-vs { opacity:0;animation:curtainX .6s .05s var(--ease) forwards; }
     body.ready #curtain-center { opacity:0; }
     @keyframes curtainX { from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);} }
@@ -130,7 +132,8 @@
     .h-vs-logo   { height:clamp(68px,10vw,128px);object-fit:contain;filter:brightness(0) invert(1) opacity(.9);position:relative;z-index:1; }
     .h-x         { font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(44px,6vw,72px);color:var(--gold);line-height:1;position:relative;z-index:1;animation:xGlow 3s ease-in-out infinite 1.5s; }
     @keyframes xGlow { 0%,100%{text-shadow:none;}50%{text-shadow:0 0 32px rgba(212,168,75,.6);} }
-    .h-brand-logo { height:clamp(28px,4.4vw,54px);object-fit:contain;filter:brightness(0) invert(1) opacity(.9);position:relative;z-index:1; }
+    .h-brand-pill { height:clamp(68px,10vw,128px);background:rgba(255,255,255,.90);border-radius:14px;padding:14px 26px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1; }
+    .h-brand-logo { max-height:80%;max-width:clamp(110px,14vw,185px);object-fit:contain; }
     .hero-divider { position:relative;z-index:1;width:1px;height:60px;background:linear-gradient(to bottom,rgba(212,168,75,.7),transparent);margin:0 auto 32px;opacity:0;animation:fadeIn .9s .4s forwards; }
     .hero-sub {
       position:relative;z-index:1;font-family:'Playfair Display',serif;
@@ -283,6 +286,10 @@
     .p-list li::before { content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px; }
     .p-list li.dim { color:rgba(242,237,228,.18);font-style:italic; }
     .p-list li.dim::before { background:rgba(242,237,228,.12); }
+    .p-ghost-wrap { position:relative;max-width:520px;margin:24px auto 0; }
+    .p-card-ghost { opacity:0.22;pointer-events:none;filter:blur(0.5px);user-select:none; }
+    .p-ghost-overlay { position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;border-radius:22px;border:1px solid rgba(255,255,255,.04); }
+    .p-ghost-label { font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,237,228,.40);font-weight:600;text-align:center; }
 
     /* ─── PARTNERS ────────────────────────────── */
     .partners { position:relative;z-index:2;padding:100px 0 96px;background:var(--cream);overflow:hidden; }
@@ -369,7 +376,7 @@
 <div id="curtain-center">
   <img src="villasjovik_logga.webp" alt="Villa Sjövik" class="cv-vs">
   <span class="cx">×</span>
-  <img src="logos/tergent.jpg" alt="Tergent" class="cv">
+  <div class="cv cv-pill"><img src="logos/tergent.jpg" alt="Tergent"></div>
 </div>
 
 <!-- UI -->
@@ -387,7 +394,7 @@
   <div class="hero-lockup">
     <img src="villasjovik_logga.webp" alt="Villa Sjövik" class="h-vs-logo">
     <span class="h-x">×</span>
-    <img src="logos/tergent.jpg" alt="Tergent" class="h-brand-logo">
+    <div class="h-brand-pill"><img src="logos/tergent.jpg" alt="Tergent" class="h-brand-logo"></div>
   </div>
   <div class="hero-divider" aria-hidden="true"></div>
   <p class="hero-sub">
@@ -436,7 +443,7 @@
     </h2>
     <div class="concept-grid">
       <div class="glass-card rv d2">
-        <p class="body-txt">I Villa Sjövik används produkter som faktiskt används — inte som rekvisita, utan som en naturlig del av vardagen. Med Tergent i huset skapar vi en autentisk filmreklam och ett bildpaket som visar produkterna i sin rätta miljö.</p>
+        <p class="body-txt">Jag publicerar produkter jag faktiskt står bakom och använder på Villa Sjövik — alltså ingen rekvisita, utan som en naturlig del av vardagen. Med Tergent i trädgården skapar jag en autentisk filmreklam och ett bildpaket som visar produkterna i sin rätta miljö.</p>
       </div>
       <div class="glass-card rv d3">
         <p class="body-txt">Jag producerar och publicerar allt innehåll — en välproducerad filmreklam, 2 Stories med direktlänk till er produktsida och 10 professionella livsstilsbilder. Ni äger allt material med fri och obegränsad nyttjanderätt.</p>
@@ -561,6 +568,24 @@
           <li>10 professionella produkt- och livsstilsbilder</li>
           <li>Fri och obegränsad nyttjanderätt på allt material</li>
           <li>En äkta start på ett samarbete som kan växa</li>
+        </ul>
+      </div>
+    </div>
+    <div class="p-ghost-wrap rv">
+      <div class="p-ghost-overlay">
+        <span class="p-ghost-label">Fullpaket — vid utökat samarbete</span>
+      </div>
+      <div class="p-card p-card-ghost">
+        <div class="p-title" style="font-size:22px;padding-top:8px;">3 publiceringar</div>
+        <div class="p-desc">3 Reels · 6 Stories med CTA · 30 bilder</div>
+        <div class="p-orig">42 000 kr</div>
+        <div class="p-amt" style="font-size:44px;">27 000</div>
+        <div class="p-unit">kr exkl. moms</div>
+        <ul class="p-list">
+          <li>3 Reels publicerade på Instagram och Facebook</li>
+          <li>6 Stories med direktlänk och CTA</li>
+          <li>30 professionella produkt- och livsstilsbilder</li>
+          <li>Fri och obegränsad nyttjanderätt på allt material</li>
         </ul>
       </div>
     </div>
