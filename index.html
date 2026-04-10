@@ -102,7 +102,7 @@
     #curtain-center .cx { font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(36px,5vw,64px);color:var(--gold);line-height:1;opacity:0;animation:curtainX .6s .25s var(--ease) forwards; }
     #curtain-center .cv { opacity:0;animation:curtainX .6s .45s var(--ease) forwards; }
     #curtain-center .cv.cv-pill { background:rgba(255,255,255,.90);border-radius:10px;padding:10px 18px;display:flex;align-items:center;justify-content:center;height:clamp(40px,5.5vw,72px); }
-    #curtain-center .cv.cv-pill img { max-height:100%;max-width:clamp(80px,10vw,145px);object-fit:contain; }
+    #curtain-center .cv.cv-pill img { max-height:100%;max-width:clamp(80px,10vw,145px);object-fit:contain;mix-blend-mode:multiply; }
     #curtain-center .cv-vs { opacity:0;animation:curtainX .6s .05s var(--ease) forwards; }
     body.ready #curtain-center { opacity:0; }
     @keyframes curtainX { from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);} }
@@ -133,7 +133,7 @@
     .h-x         { font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(44px,6vw,72px);color:var(--gold);line-height:1;position:relative;z-index:1;animation:xGlow 3s ease-in-out infinite 1.5s; }
     @keyframes xGlow { 0%,100%{text-shadow:none;}50%{text-shadow:0 0 32px rgba(212,168,75,.6);} }
     .h-brand-pill { height:clamp(68px,10vw,128px);background:rgba(255,255,255,.90);border-radius:14px;padding:14px 26px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1; }
-    .h-brand-logo { max-height:80%;max-width:clamp(110px,14vw,185px);object-fit:contain; }
+    .h-brand-logo { max-height:80%;max-width:clamp(110px,14vw,185px);object-fit:contain;mix-blend-mode:multiply; }
     .hero-divider { position:relative;z-index:1;width:1px;height:60px;background:linear-gradient(to bottom,rgba(212,168,75,.7),transparent);margin:0 auto 32px;opacity:0;animation:fadeIn .9s .4s forwards; }
     .hero-sub {
       position:relative;z-index:1;font-family:'Playfair Display',serif;
@@ -241,6 +241,7 @@
     .d-card.d1.v,.ep-card.d1.v { transform:perspective(1300px) rotateY(9deg); }
     .d-card.d3.v,.ep-card.d3.v { transform:perspective(1300px) rotateY(-9deg); }
     .p-card.feat.v { transform:perspective(1300px) rotateY(0deg); }
+    .p-card.feat.d1.v { transform:perspective(1300px) rotateY(9deg); }
 
     /* D-card shimmer */
     .d-card::after { content:'';position:absolute;top:0;left:0;width:55%;height:100%;background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.04) 35%,rgba(255,255,255,.10) 50%,rgba(255,255,255,.04) 65%,transparent 100%);transform:translateX(-150%) skewX(-12deg);pointer-events:none;z-index:5; }
@@ -267,7 +268,7 @@
     .ph-lbl::before,.ph-lbl::after { content:'';flex:0 0 28px;height:1px;background:var(--gold-dim); }
     .ph-h2 { font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;color:var(--ink); }
     .ph-h2 em { color:var(--gold);font-style:italic; }
-    .pricing-solo { max-width:520px;margin:0 auto; }
+    .pricing-duo { display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start; }
     .p-card { padding:48px 40px;border-radius:22px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(145deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);position:relative;overflow:hidden;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .4s var(--ease),border-color .4s,box-shadow .4s; }
     .p-card::before { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent); }
     .p-card:hover { box-shadow:0 32px 64px rgba(0,0,0,.55); }
@@ -286,7 +287,8 @@
     .p-list li::before { content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px; }
     .p-list li.dim { color:rgba(242,237,228,.18);font-style:italic; }
     .p-list li.dim::before { background:rgba(242,237,228,.12); }
-    .p-ghost-wrap { position:relative;max-width:520px;margin:24px auto 0; }
+    .p-ghost-wrap { position:relative;transition:transform .55s var(--ease); }
+    .p-ghost-wrap.d3.v { transform:perspective(1300px) rotateY(-9deg); }
     .p-card-ghost { opacity:0.22;pointer-events:none;filter:blur(0.5px);user-select:none; }
     .p-ghost-overlay { position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;border-radius:22px;border:1px solid rgba(255,255,255,.04); }
     .p-ghost-label { font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,237,228,.40);font-weight:600;text-align:center; }
@@ -349,7 +351,7 @@
       .concept-grid { grid-template-columns:1fr;gap:16px; }
       .episode-grid { grid-template-columns:1fr;max-width:420px;margin:0 auto; }
       .hero-lockup { gap:22px; }
-      .pricing-solo { max-width:100%; }
+      .pricing-duo { grid-template-columns:1fr; }
     }
     @media (max-width:500px) {
       .ticker-item { width:160px;padding:0 24px; }
@@ -554,8 +556,8 @@
         <em><span class="w"><i>förslag.</i></span></em>
       </h2>
     </div>
-    <div class="pricing-solo rv">
-      <div class="p-card feat">
+    <div class="pricing-duo">
+      <div class="p-card feat rv d1">
         <div class="p-badge">Startpaket</div>
         <div class="p-title">1 publicering</div>
         <div class="p-desc">1 Reel · 2 Stories med CTA · 10 bilder</div>
@@ -570,23 +572,23 @@
           <li>En äkta start på ett samarbete som kan växa</li>
         </ul>
       </div>
-    </div>
-    <div class="p-ghost-wrap rv">
-      <div class="p-ghost-overlay">
-        <span class="p-ghost-label">Fullpaket — vid utökat samarbete</span>
-      </div>
-      <div class="p-card p-card-ghost">
-        <div class="p-title" style="font-size:22px;padding-top:8px;">3 publiceringar</div>
-        <div class="p-desc">3 Reels · 6 Stories med CTA · 30 bilder</div>
-        <div class="p-orig">42 000 kr</div>
-        <div class="p-amt" style="font-size:44px;">27 000</div>
-        <div class="p-unit">kr exkl. moms</div>
-        <ul class="p-list">
-          <li>3 Reels publicerade på Instagram och Facebook</li>
-          <li>6 Stories med direktlänk och CTA</li>
-          <li>30 professionella produkt- och livsstilsbilder</li>
-          <li>Fri och obegränsad nyttjanderätt på allt material</li>
-        </ul>
+      <div class="p-ghost-wrap rv d3">
+        <div class="p-ghost-overlay">
+          <span class="p-ghost-label">Fullpaket — vid utökat samarbete</span>
+        </div>
+        <div class="p-card p-card-ghost">
+          <div class="p-title" style="font-size:22px;padding-top:8px;">3 publiceringar</div>
+          <div class="p-desc">3 Reels · 6 Stories med CTA · 30 bilder</div>
+          <div class="p-orig">42 000 kr</div>
+          <div class="p-amt" style="font-size:44px;">27 000</div>
+          <div class="p-unit">kr exkl. moms</div>
+          <ul class="p-list">
+            <li>3 Reels publicerade på Instagram och Facebook</li>
+            <li>6 Stories med direktlänk och CTA</li>
+            <li>30 professionella produkt- och livsstilsbilder</li>
+            <li>Fri och obegränsad nyttjanderätt på allt material</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
